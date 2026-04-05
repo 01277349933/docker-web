@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Docker Web Server</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .container {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      border: 1px solid #334155;
+    }
+    .badge {
+      background: #0ea5e9;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+    }
+    h1 span { color: #0ea5e9; }
+    p.subtitle {
+      color: #94a3b8;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .info-card {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      border-left: 3px solid #0ea5e9;
+    }
+    .info-card .label {
+      font-size: 0.75rem;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .info-card .value {
+      font-weight: 600;
+      color: #e2e8f0;
+      font-size: 1rem;
+    }
+    .commands {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+    .commands p { margin-bottom: 0.4rem; color: #94a3b8; }
+    .commands span { color: #4ade80; }
+    .commands .comment { color: #475569; }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #4ade80;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">🐳 CodeAlpha DevOps Internship — Task 4</div>
+    <h1>Web Server using <span>Docker</span></h1>
+    <p class="subtitle">Containerized Nginx web server deployed using Docker best practices.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">Base Image</div>
+        <div class="value">nginx:alpine</div>
+      </div>
+      <div class="info-card">
+        <div class="label">Exposed Port</div>
+        <div class="value">80 (HTTP)</div>
+      </div>
+      <div class="info-card">
+        <div class="label">Container Engine</div>
+        <div class="value">Docker</div>
+      </div>
+      <div class="info-card">
+        <div class="label">Deployment</div>
+        <div class="value">Local / Cloud Ready</div>
+      </div>
+    </div>
+
+    <div class="commands">
+      <p class="comment"># Build the Docker image</p>
+      <p><span>$</span> docker build -t docker-web .</p>
+      <br/>
+      <p class="comment"># Run the container on port 8080</p>
+      <p><span>$</span> docker run -d -p 8080:80 --name web docker-web</p>
+      <br/>
+      <p class="comment"># Check container health</p>
+      <p><span>$</span> docker ps</p>
+      <br/>
+      <p class="comment"># View container logs</p>
+      <p><span>$</span> docker logs web</p>
+      <br/>
+      <p class="comment"># Stop and remove</p>
+      <p><span>$</span> docker stop web && docker rm web</p>
+    </div>
+
+    <div class="status">
+      <div class="dot"></div>
+      Container is running successfully
+    </div>
+  </div>
+</body>
+</html>
